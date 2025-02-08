@@ -1,0 +1,26 @@
+public class Main{
+
+public static void main(String [] args){
+    double [] rating= {9.6, 8.1, 9.6, 10.3, 7.3};
+
+    double MostFrequentRating=rating[0];
+    int Maxcount=0;
+    for(int i=0;i<rating.length; i++){
+        int count=0;
+        for(int j=0; j<rating.length; j++){
+            if(rating[i]==rating[j]){
+            count++;
+
+        }
+    }
+if(count>Maxcount){
+Maxcount=count;
+MostFrequentRating=rating[i];
+}
+    }
+    System.out.println("The most frequent rating is  :"+MostFrequentRating);
+ System.out.println("The max count is:"+Maxcount);
+ 
+    
+}
+}

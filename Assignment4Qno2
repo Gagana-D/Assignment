@@ -1,0 +1,25 @@
+public class NextGreaterElement {
+			    public static void findNextGreater(int[] arr, int[] result, int index) {
+		       		        if (index == arr.length) {
+		            return;
+		        }
+		        // Find the next greater element 
+		        result[index] = -1; // Default value
+		        for (int j = index + 1; j < arr.length; j++) {
+		            if (arr[j] > arr[index]) {
+		                result[index] = arr[j];
+		                break;
+		            }
+		        }
+		    		        findNextGreater(arr, result, index + 1);
+		    }
+		   public static int[] nextGreaterElements(int[] arr) {
+		        int[] result = new int[arr.length]; 
+		        findNextGreater(arr, result, 0);   
+		        return result;
+		    }
+		    public static void main(String[] args) {
+		     		        int[] arr3 = {10, 20, 30, 50};
+		   System.out.println(java.util.Arrays.toString(nextGreaterElements(arr3)));
+		     		    }
+		}

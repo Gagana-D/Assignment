@@ -1,0 +1,17 @@
+public class IPv4Validator {
+		    public static boolean isValidIPv4(String ip) {
+	        String[] parts = ip.split("\\."); 
+	        if (parts.length != 4) return false; // Must have exactly 4 parts
+	        for (int i = 0; i < parts.length; i++) {
+	            if (!parts[i].matches("\\d+")) return false; // Ensure only digits
+	            if (parts[i].length() > 1 && parts[i].startsWith("0")) return false; // No leading zeros
+	            int num = Integer.parseInt(parts[i]);
+	            if (num < 0 || num > 255) return false; // Must be in range 0-255
+	        }
+	        return true;
+	    }
+	    public static void main(String[] args) {
+	        System.out.println(isValidIPv4("222.111.111.111")); 
+	        System.out.println(isValidIPv4("5555..555"));     
+	       	    }
+	}

@@ -1,0 +1,26 @@
+public class RemoveDuplicates {
+		    public static String removeDuplicateChars(String str) {
+		        StringBuilder result = new StringBuilder(); 
+		        for (int i = 0; i < str.length(); i++) {
+		            char ch = str.charAt(i);
+		            boolean isDuplicate = false;
+		            // Checking if the character already exists in the result
+		            for (int j = 0; j < result.length(); j++) {
+		                if (result.charAt(j) == ch) {
+		                    isDuplicate = true;
+		                    break;
+		                }
+		            }
+		            // If character is not a duplicate, add it to result
+		            if (!isDuplicate) {
+		                result.append(ch);
+		            }
+		        }
+		        return result.toString();
+		    }
+		  public static void main(String[] args) {
+		        String input = "banana";
+		        String output = removeDuplicateChars(input);
+		        System.out.println(output);
+		    }
+		}

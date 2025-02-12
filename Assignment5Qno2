@@ -1,0 +1,63 @@
+package assignment5;
+import java.util.Random;
+public class KthClosestTemperature {
+    public static int findKthClosest(int[] readings, int target, int k) {
+        int[] diffs = new int[readings.length];
+                for (int i = 0; i < readings.length; i++) {
+            int diff = readings[i] - target;
+            if (diff < 0) diff = -diff; 
+            diffs[i] = diff;
+        }
+        // Use Quickselect to find the k-th smallest absolute difference
+        int kthDiff = quickSelect(diffs, 0, diffs.length - 1, k - 1);
+                for (int i = 0; i < readings.length; i++) {
+            int diff = readings[i] - target;
+            if (diff < 0) diff = -diff; 
+            if (diff == kthDiff) {
+                return readings[i];
+            }
+        }
+        return -1; 
+    }
+    private static int quickSelect(int[] arr, int left, int right, int k) {
+        if (left == right) return arr[left];
+
+        int pivotIndex = partition(arr, left, right);
+        
+        if (k == pivotIndex) {
+            return arr[k];
+        } else if (k < pivotIndex) {
+            return quickSelect(arr, left, pivotIndex - 1, k);
+        } else {
+            return quickSelect(arr, pivotIndex + 1, right, k);
+        }
+    }
+    private static int partition(int[] arr, int left, int right) {
+        int pivotIndex = new Random().nextInt(right - left + 1) + left;
+        int pivot = arr[pivotIndex];
+        swap(arr, pivotIndex, right);
+        int storeIndex = left;
+
+        for (int i = left; i < right; i++) {
+            if (arr[i] < pivot) {
+                swap(arr, i, storeIndex);
+                storeIndex++;
+            }
+        }
+        swap(arr, storeIndex, right);
+        return storeIndex;
+    }
+   private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    public static void main(String[] args) {
+        int[] readings = {72, 75, 68, 80, 74};
+        int target = 73;
+        int k = 2;
+        int result = findKthClosest(readings, target, k);
+        
+        System.out.println("K-th closest temperature: " + result);
+    }
+}

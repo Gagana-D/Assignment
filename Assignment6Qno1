@@ -1,0 +1,33 @@
+import java.util.*;
+	public class GroupAnagrams {
+	    public static List<List<String>> groupAnagrams(String[] strs) {
+	        
+	        HashMap<String, List<String>> map = new HashMap<>();
+	        	        for (int i = 0; i < strs.length; i++) {
+	            String str = strs[i];
+	            System.out.println("Processing: " + str);
+	            // Convert string to char array, sort it, and convert it back to string
+	            char[] charArray = str.toCharArray();
+	            Arrays.sort(charArray);
+	            String sortedStr = new String(charArray);
+	            System.out.println("Sorted version: " + sortedStr);
+	           
+	            if (!map.containsKey(sortedStr)) {
+	                map.put(sortedStr, new ArrayList<>());
+	               	            }
+	           
+	            map.get(sortedStr).add(str);
+	            System.out.println("Updated map: " + map);
+	        }
+	        // Convert HashMap values to List
+	        List<List<String>> result = new ArrayList<>(map.values());
+	        System.out.println("Final grouped anagrams: " + result);
+	        return result;
+	    }
+	    public static void main(String[] args) {
+	        String[] strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+	        List<List<String>> result = groupAnagrams(strs);
+	        
+	        System.out.println("Output: " + result);
+	    }
+	}
